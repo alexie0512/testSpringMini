@@ -1,0 +1,7 @@
+hogwarts:
+  keys: hogwarts
+server:
+  port: 8082
+spring:
+  application:
+    name: SpringMini System

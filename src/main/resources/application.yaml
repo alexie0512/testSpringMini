@@ -1,0 +1,11 @@
+#hogwarts:
+#  keys: hogwarts
+#server:
+#  port: 8080
+#spring:
+#  application:
+#    name: SpringMini System
+spring:
+  profiles:
+    active: prod
+
