@@ -1,7 +1,10 @@
 package com.testSpringMini.demo.controller;
 
 
+import com.testSpringMini.demo.common.ServiceException;
+import com.testSpringMini.demo.dto.ResultDto;
 import com.testSpringMini.demo.dto.UserDto;
+import com.testSpringMini.demo.dto.addUserDto;
 import com.testSpringMini.demo.service.AJUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 //                Spring会转换其返回值并自动将其写入http响应
 @Api(tags="Tester Field - Client Management")
 @RestController
-@RequestMapping("hogwarts")
+@RequestMapping("hogwartsuser")
 public class AJUserController {
 
     @Autowired
@@ -39,11 +42,24 @@ public class AJUserController {
     //RequestBody: 将requestbody中的json/xml对象解析成该参数类型的javabean对象
     //post/put/get/deletmapping: 在方法级别上使用，在方法级别上，用于处理http的各种办法
     //@PostMapping("login")
+    @ApiOperation("登录接口_post")
     @RequestMapping(value="login_post", method = RequestMethod.POST)
-    public String login_post(@RequestBody UserDto userDto){
+    public ResultDto<UserDto> login_post(@RequestBody UserDto userDto){
         System.out.println("-----login  post------");
         String result= ajUserService.login(userDto);
-        return "login succesfully" +result + "hogwartskeys= " + hogwartskeys;
+
+        if(userDto.getUsername().contains("error")){
+            ServiceException.throwEx("用户名中含有error");
+        }
+        return ResultDto.success("login succesfully" + result + "hogwartskeys= " + hogwartskeys);
+    }
+
+
+    @RequestMapping(value="register", method = RequestMethod.POST)
+    public String register(@RequestBody addUserDto addUserDto){
+        System.out.println("-----register------");
+        String result= ajUserService.register(addUserDto);
+        return "registered successfully" +result;
     }
 
     //pathvariable：处理动态的URI，URI的值可以作为控制器中处理方法的参数

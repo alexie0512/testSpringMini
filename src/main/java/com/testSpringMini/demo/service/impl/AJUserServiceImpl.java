@@ -1,6 +1,7 @@
 package com.testSpringMini.demo.service.impl;
 
 import com.testSpringMini.demo.dto.UserDto;
+import com.testSpringMini.demo.dto.addUserDto;
 import com.testSpringMini.demo.service.AJUserService;
 import org.springframework.stereotype.Component;
 
@@ -12,8 +13,16 @@ public class AJUserServiceImpl implements AJUserService {
 
     @Override
     public String login(UserDto userDto) {
+
         return userDto.getUsername()+"-"+userDto.getPwd();
     }
+
+    @Override
+    public String register(addUserDto addUserDto) {
+        return addUserDto.getUsername()+"-"+addUserDto.getPwd();
+    }
+
+
 }
 
 
