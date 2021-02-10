@@ -24,3 +24,32 @@ tail -f test_info_8099.log  #实时查看服务输出日志
 - 统一响应大对象
 - 分页请求对象
 - 分页响应对象
+
+- 数据持久化
+- mybatis-maven依赖
+- 自动生成代码-maven配置
+- mybatis配置
+- 自动生成代码- config.properties
+- 自动生成代码- generatorConfig.xml
+- 用户表
+```
+CREATE TABLE `hogwarts_test_user` (
+	`id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`user_name` VARCHAR ( 50 ) CHARACTER 
+	SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名',
+	`password` VARCHAR ( 32 ) CHARACTER 
+	SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
+	`email` VARCHAR ( 50 ) CHARACTER 
+	SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '邮箱',
+	`auto_create_case_job_name` VARCHAR ( 50 ) CHARACTER 
+	SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '自动生成用例job名称 不为空时表示已经创建job',
+	`start_test_job_name` VARCHAR ( 50 ) CHARACTER 
+	SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '执行测试job名称 不为空时表示已经创建job',
+	`default_jenkins_id` INT DEFAULT NULL COMMENT '默认Jenkins服务器',
+	`create_time` datetime NOT NULL COMMENT '创建时间',
+	`update_time` datetime NOT NULL COMMENT '更新时间',
+PRIMARY KEY ( `id` ) USING BTREE 
+) ENGINE = INNODB AUTO_INCREMENT = 12 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC COMMENT = '用户表';
+```
+- tk.mybatis使用- mapper 统一父类
+
