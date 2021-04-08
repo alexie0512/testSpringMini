@@ -17,12 +17,12 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<!-- Java接口和实体类 -->
-		<targetJavaProject>${basedir}/src/main/java</targetJavaProject>
-		<targetMapperPackage>tk.mybatis.mapper.mapper</targetMapperPackage>
-		<targetModelPackage>tk.mybatis.mapper.model</targetModelPackage>
+		<!--<targetJavaProject>${basedir}/src/main/java</targetJavaProject>-->
+		<!--<targetMapperPackage>tk.mybatis.mapper.mapper</targetMapperPackage>-->
+		<!--<targetModelPackage>tk.mybatis.mapper.model</targetModelPackage>-->
 		<!-- XML 生成路径 -->
-		<targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
-		<targetXMLPackage>mapper</targetXMLPackage>
+		<!--<targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>-->
+		<!--<targetXMLPackage>mapper</targetXMLPackage>-->
 	</properties>
 
 	<dependencies>
@@ -155,7 +155,7 @@
 			</plugin>
 
 			<!-- tkmybatis generator -->
-			<plugin>
+			<!--<plugin>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-maven-plugin</artifactId>
 				<version>1.3.7</version>
@@ -176,7 +176,7 @@
 						<version>4.0.4</version>
 					</dependency>
 				</dependencies>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
