@@ -14,14 +14,14 @@ kill -9 10179       #停止该进程
 sh test_start_8099.sh     #执行启动命令
 tail -f test_info_8099.log  #实时查看服务输出日志
 ```
-###Springboot容器常用注解：
+### Springboot容器常用注解：
  * @RestController : 将类标记成对外提供服务的模块，Spring会转换其返回值并自动将其写入http响应
  * @RequestMapping ： 用于类和方法，在方法级别，用于处理http响应的各种办法
  * @RequestBody : 将requestbody中的json/xml对象解析成该参数类型的javabean对象
  * Post/Put/Get/DeleteMapping: 在方法级别上使用，在方法级别上，用于处理http的各种办法
  * @RequestParam :  处理get请求的参数
  * @PathVariable ： 处理动态的URI，URI的值可以作为控制器中处理方法的参数
- ######其他常用注解：
+### 其他常用注解：
  * @Component : 声明为springboot的bean
  * @Autowired : 用于向一个bean中注入其他bean
  * @Service : 用于service层的bean
@@ -59,7 +59,7 @@ tail -f test_info_8099.log  #实时查看服务输出日志
    - https://mybatis.org/mybatis-3/zh/sqlmap-xml.html
 
 
-#####创建用户表 hogwarts_test_user:
+##### 创建用户表 hogwarts_test_user:
 ```
 CREATE TABLE `hogwarts_test_user` (
 	`id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
