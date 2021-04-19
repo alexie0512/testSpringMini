@@ -6,25 +6,26 @@ import com.testSpringMini.demo.service.AJUserService;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * @Component : 声明为springboot的bean
+ */
 
-//component:声明为springboot的bean
+
 @Component
 public class AJUserServiceImpl implements AJUserService {
 
     @Override
     public String login(UserDto userDto) {
-
-        return userDto.getUsername()+"-"+userDto.getPwd();
+        return "用户名： "+ userDto.getUsername() + "  - 密码： " + userDto.getPwd();
     }
 
     @Override
     public String register(addUserDto addUserDto) {
-        return addUserDto.getUsername()+"-"+addUserDto.getPwd();
+        return addUserDto.getUsername() + "-" + addUserDto.getPwd();
     }
 
 
 }
-
 
 
 //其他常用注解：

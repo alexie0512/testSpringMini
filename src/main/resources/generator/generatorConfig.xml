@@ -1,11 +1,10 @@
-
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <!---<properties resource="generator/config.properties"/>
+    <properties resource="generator/config.properties"/>
     <context id="Mysql" defaultModelType="flat" targetRuntime="MyBatis3Simple">
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
@@ -24,12 +23,17 @@
 
         <sqlMapGenerator targetPackage="${targetXMLPackage}" targetProject="${targetResourcesProject}"/>
 
-        <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}"
+                             type="XMLMAPPER"/>
 
-        <!-生成用户相关的类-->
-       <!--- <table schema="hogwarts" tableName="hogwarts_test_user" domainObjectName="HogwartsTestUser" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">
+
+        <!--生成用户相关的类-->
+
+        <table schema="hogwarts" tableName="hogwarts_test_user" domainObjectName="HogwartsTestUser"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
 
-    </context>-->
+    </context>
 </generatorConfiguration>

@@ -18,12 +18,14 @@ public class GlobalExceptionHandler {
 
     //ExceptionHandler(value=Exception.class): 统一处理某一类异常，声明该方法用于捕获value所指的类型的异常（注意：当该异常的子父类都被声明时，按照线子后父的顺序进行捕获）
 
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({ServiceException.class})
     public ResultDto serviceExceptionHandler(ServiceException se){
         log.error(se.getMessage());
         return resultFormat(se);
     }
 
+    @ResponseStatus(HttpStatus.BAD_GATEWAY)
     @ExceptionHandler({Exception.class})
     public ResultDto exceptionHandler(Exception e){
         log.error(e.getMessage());
@@ -39,6 +41,7 @@ public class GlobalExceptionHandler {
         log.error(t.getMessage());
         return ResultDto.fail("系统错误🙅");
     }
+
 
     public ResultDto resultFormat(Throwable t){
         String tips="系统繁忙，请稍后重试";

@@ -12,9 +12,9 @@ import lombok.Data;
 public class UserDto {
 
     @ApiModelProperty(value="login username",example = "alexie", required = true)
-    String username;
+    private String username;
 
     @ApiModelProperty(value="login pwd",example = "123login", required = true)
-    String pwd;
+    private String pwd;
 
 }

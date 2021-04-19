@@ -9,5 +9,6 @@ import tk.mybatis.mapper.common.MySqlMapper;
  * @param <T>
  */
 
+
 public interface MySqlExtensionMapper<T> extends Mapper<T>, MySqlMapper<T>, IdsMapper<T> {
 }

@@ -8,7 +8,11 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 
-//跨域资源共享标准新增了一组HTTP首部字段，允许服务器声明哪些源站通过浏览器有权限访问哪些资源。 ajax    https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+/**
+ * - Cors跨域资源共享
+ * 跨域资源共享标准新增了一组HTTP首部字段，允许服务器声明哪些源站通过浏览器有权限访问哪些资源。
+ * ajax    https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+ */
 
 @Configuration
 public class GlobalCorsConfig {

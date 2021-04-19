@@ -7,5 +7,4 @@
 #    name: SpringMini System
 spring:
   profiles:
-    active: prod
-
+   active: prod
