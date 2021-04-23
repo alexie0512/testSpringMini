@@ -33,6 +33,7 @@ tail -f test_info_8099.log  #实时查看服务输出日志
 
 
 ### 后端搭建：
+- Swagger 配置:
 - Springboot:多环境配置
 - 自定义业务异常使用
 - 全局异常处理
@@ -55,10 +56,6 @@ tail -f test_info_8099.log  #实时查看服务输出日志
    - mybatis配置
    - 自动生成代码- generator/config.properties
    - 自动生成代码- generator/generatorConfig.xml
-- tk.mybatis使用- mapper 统一父类
-   - https://mybatis.org/mybatis-3/zh/sqlmap-xml.html
-
-
 ##### 创建用户表 hogwarts_test_user:
 ```
 CREATE TABLE `hogwarts_test_user` (
@@ -79,5 +76,19 @@ CREATE TABLE `hogwarts_test_user` (
 PRIMARY KEY ( `id` ) USING BTREE 
 ) ENGINE = INNODB AUTO_INCREMENT = 12 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC COMMENT = '用户表';
 ```
-
+- tk.mybatis使用- mapper 统一父类
+- mybatis 常见xml标签-映射
+   - https://mybatis.org/mybatis-3/zh/sqlmap-xml.html
+   - mapper: namespace
+   - resultMap: id, type
+   - id: column, property, jdbcType
+   - result: column, property, jdbcType
+   
+- mybatis 常用xml标签-sql
+   - update：id
+   - select: id, resultType
+   - if: test
+   - insert: id
+   - delete: id
+- mybatis 常见特性
 

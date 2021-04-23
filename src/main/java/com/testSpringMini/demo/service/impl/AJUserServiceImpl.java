@@ -1,9 +1,18 @@
 package com.testSpringMini.demo.service.impl;
 
+import com.testSpringMini.demo.dao.HogwartsTestUserMapper;
+import com.testSpringMini.demo.dto.ResultDto;
 import com.testSpringMini.demo.dto.UserDto;
-import com.testSpringMini.demo.dto.addUserDto;
+import com.testSpringMini.demo.dto.AddHogwartsTestUserDto;
+import com.testSpringMini.demo.entity.HogwartsTestUser;
 import com.testSpringMini.demo.service.AJUserService;
+import io.swagger.models.auth.In;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -11,17 +20,69 @@ import org.springframework.stereotype.Component;
  */
 
 
-@Component
+@Service
 public class AJUserServiceImpl implements AJUserService {
+
+    @Autowired
+    private HogwartsTestUserMapper hogwartsTestUserMapper;
 
     @Override
     public String login(UserDto userDto) {
-        return "用户名： "+ userDto.getUsername() + "  - 密码： " + userDto.getPwd();
+        return "用户名： " + userDto.getUsername() + "  - 密码： " + userDto.getPwd();
     }
 
+
+    /**
+     * 保存
+     * @param hogwartsTestUser
+     * @return
+     */
     @Override
-    public String register(addUserDto addUserDto) {
-        return addUserDto.getUsername() + "-" + addUserDto.getPwd();
+    public ResultDto<HogwartsTestUser> save(HogwartsTestUser hogwartsTestUser) {
+        hogwartsTestUser.setCreateTime(new Date());
+        hogwartsTestUser.setUpdateTime(new Date());
+        hogwartsTestUser.setAutoCreateCaseJobName("1");
+        hogwartsTestUser.setStartTestJobName("1");
+        hogwartsTestUserMapper.insertUseGeneratedKeys(hogwartsTestUser);
+        return ResultDto.success("成功",hogwartsTestUser);
+    }
+
+    /**
+     * 更新
+     * @param hogwartsTestUser
+     * @return
+     */
+    @Override
+    public ResultDto<HogwartsTestUser> update(HogwartsTestUser hogwartsTestUser) {
+
+        hogwartsTestUser.setUpdateTime(new Date());
+        hogwartsTestUserMapper.updateByPrimaryKey(hogwartsTestUser);
+        //hogwartsTestUserMapper.updateUserDemo(hogwartsTestUser.getUserName(),hogwartsTestUser.getPassword(),hogwartsTestUser.getEmail(),hogwartsTestUser.getId());
+        return ResultDto.success("更新成功！", hogwartsTestUser);
+    }
+
+    /**
+     * 根据用户id 和 名字 模糊查询
+     * @param hogwartsTestUser
+     * @return
+     */
+    @Override
+    public ResultDto<List<HogwartsTestUser>> searchbyNameorId(HogwartsTestUser hogwartsTestUser) {
+
+        /*List<HogwartsTestUser> hogwartsTestUserList=hogwartsTestUserMapper.searchbyIdorName(hogwartsTestUser.getId(),hogwartsTestUser.getUserName());*/
+        List<HogwartsTestUser> hogwartsTestUserList= hogwartsTestUserMapper.select(hogwartsTestUser);
+        return ResultDto.success("查询成功！",hogwartsTestUserList);
+    }
+
+    /**
+     * 根据用户id 删除用户
+     * @param userId
+     * @return
+     */
+    @Override
+    public ResultDto<HogwartsTestUser> deletebyId(Integer userId) {
+        hogwartsTestUserMapper.deleteByPrimaryKey(userId);
+        return ResultDto.success("删除成功！");
     }
 
 

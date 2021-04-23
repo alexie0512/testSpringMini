@@ -1,7 +1,28 @@
 hogwarts:
   keys: hogwarts
 server:
-  port: 8081
+  port: 8080
+#springboot集成mybatis配置
+#mybatis相关配置
+#sql语句打印配置
 spring:
- application:
-   name: SpringMini System
+  application:
+    name: SpringMini System
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/hogwarts?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: mysql0512
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.testSpringMini.demo.entity
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+logging:
+  level:
+    com.testSpringMini.demo.dao: debug   #打印sql

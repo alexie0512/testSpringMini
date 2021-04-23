@@ -3,6 +3,16 @@ package com.testSpringMini.demo.entity;
 import java.util.Date;
 import javax.persistence.*;
 
+
+/**
+ *
+ * 持久化常用注解
+ * @Table : 表对应的实体类标识，name属性为表名
+ * @Id : 主键标识
+ * @GeneratedValue(strategy = GenerationType.IDENTITY) : 配置主键为自增策略
+ * @Column :  列名标识，当类属性与表字段不符时，用name属性标识表字段
+ * @Transient : 标识此字段不进行持久化
+ */
 @Table(name = "hogwarts_test_user")
 public class HogwartsTestUser extends BaseEntityNew {
     /**
