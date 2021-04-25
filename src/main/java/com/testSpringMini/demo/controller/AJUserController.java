@@ -66,6 +66,7 @@ public class AJUserController {
 
         if(StringUtils.isEmpty(addHogwartsTestUserDto.getUserName())){
             return ResultDto.fail("用户名不能为空");
+
         }
 
         if(StringUtils.isEmpty(addHogwartsTestUserDto.getPassword())){
