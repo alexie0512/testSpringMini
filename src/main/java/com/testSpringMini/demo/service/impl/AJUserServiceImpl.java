@@ -1,5 +1,6 @@
 package com.testSpringMini.demo.service.impl;
 
+import com.testSpringMini.demo.common.UserConstants;
 import com.testSpringMini.demo.dao.HogwartsTestUserMapper;
 import com.testSpringMini.demo.dto.ResultDto;
 import com.testSpringMini.demo.dto.UserDto;
@@ -10,9 +11,11 @@ import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -39,6 +42,20 @@ public class AJUserServiceImpl implements AJUserService {
      */
     @Override
     public ResultDto<HogwartsTestUser> save(HogwartsTestUser hogwartsTestUser) {
+
+        //校验用户名是否已经存在
+        String userName= hogwartsTestUser.getUserName();
+        HogwartsTestUser queryHTUser= new HogwartsTestUser();
+        queryHTUser.setUserName(userName);
+        HogwartsTestUser HTUser=hogwartsTestUserMapper.selectOne(queryHTUser);
+        if(Objects.nonNull(HTUser)){
+            return ResultDto.fail("用户名已存在");
+        }
+
+        //密码MD5加密存储
+        String password= hogwartsTestUser.getPassword();
+        String encryptedPWD= DigestUtils.md5DigestAsHex((UserConstants.md5Hex_sign+userName+password).getBytes());
+        hogwartsTestUser.setPassword(encryptedPWD);
         hogwartsTestUser.setCreateTime(new Date());
         hogwartsTestUser.setUpdateTime(new Date());
         hogwartsTestUser.setAutoCreateCaseJobName("1");

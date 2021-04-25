@@ -13,4 +13,5 @@ import org.springframework.stereotype.Component;
 
 public class UserConstants {
     public static final String LOGIN_TOKEN="token";
+    public static final String md5Hex_sign="Alexis";
 }
