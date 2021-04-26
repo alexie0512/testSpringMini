@@ -51,7 +51,8 @@ public class DemoInterceptor implements HandlerInterceptor {
          * 放开不需要登录校验的接口
          */
         if(requestUri.contains("/hogwartsuser/login_post")
-                ||requestUri.contains("/hogwartsuser/register")){
+                ||requestUri.contains("/hogwartsuser/register")
+                ||requestUri.contains("/jenkins/build" )){
             flag=true;
         }
 
