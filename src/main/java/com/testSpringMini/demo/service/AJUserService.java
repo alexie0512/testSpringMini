@@ -1,5 +1,6 @@
 package com.testSpringMini.demo.service;
 
+import com.testSpringMini.demo.common.DemoToken;
 import com.testSpringMini.demo.dto.ResultDto;
 import com.testSpringMini.demo.dto.UserDto;
 import com.testSpringMini.demo.dto.AddHogwartsTestUserDto;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface AJUserService {
 
-    public String login(UserDto userDto);
+    public ResultDto<DemoToken> login(UserDto userDto);
 
     /**
      * 保存
@@ -34,7 +35,7 @@ public interface AJUserService {
 
     /**
      * 根据用户id 删除用户
-     * @param hogwartsTestUser
+     * @param userId
      * @return
      */
     public ResultDto<HogwartsTestUser> deletebyId(Integer userId);

@@ -23,7 +23,7 @@ public class SwaggerConfig {
     public Docket docket(){
         ParameterBuilder builder = new ParameterBuilder();
         builder.parameterType("header").name("token")
-                .description("Token value")
+                .description("DemoToken value")
                 .required(true)
                 .modelRef(new ModelRef("string"));
 

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Token 操作类
+ * DemoToken 操作类
  * 1.定义用于缓存token的map
  * 2.获取在线用户数（可选功能）
  * 3.根据token获取TokenDto（userId/userName/defaultJenkinsId/token）

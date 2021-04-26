@@ -4,7 +4,7 @@ package com.testSpringMini.demo.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.util.BeanUtil;
-import com.testSpringMini.demo.common.ServiceException;
+import com.testSpringMini.demo.common.*;
 import com.testSpringMini.demo.dto.ResultDto;
 import com.testSpringMini.demo.dto.UpdateHogwartsTestUserDto;
 import com.testSpringMini.demo.dto.UserDto;
@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -55,6 +56,9 @@ public class AJUserController {
     @Autowired
     private AJUserService ajUserService;
 
+    @Autowired
+    private TokenDb tokenDb;
+
     @Value("${hogwarts.keys}")
     private String hogwartskeys;
 
@@ -63,7 +67,6 @@ public class AJUserController {
     @RequestMapping(value="register", method = RequestMethod.POST)
     public ResultDto<HogwartsTestUser> register(@RequestBody AddHogwartsTestUserDto addHogwartsTestUserDto){
         System.out.println("-----register------");
-
         if(StringUtils.isEmpty(addHogwartsTestUserDto.getUserName())){
             return ResultDto.fail("用户名不能为空");
 
@@ -125,6 +128,14 @@ public class AJUserController {
     }
 
 
+    @GetMapping("isLogin")
+    public ResultDto isLogin(HttpServletRequest request){
+        String tokenStr=request.getHeader(UserConstants.LOGIN_TOKEN);
+        TokenDto tokenDto= tokenDb.getUserInfo(tokenStr);
+        return ResultDto.success("成功！", tokenDto);
+    }
+
+
 
     //get api 示例
     //requestmapping：用于类和方法，在方法级别，用于处理http响应的各种办法
@@ -141,17 +152,21 @@ public class AJUserController {
     //@PostMapping("login")
     @ApiOperation("登录接口_login_post")
     @RequestMapping(value="login_post", method = RequestMethod.POST)
-    public ResultDto login_post(@RequestBody UserDto userDto){
+    public ResultDto<DemoToken> login_post(@RequestBody UserDto userDto){
         System.out.println("-----login  post------");
-        String result= ajUserService.login(userDto);
 
-        if(userDto.getUsername().contains("error")){
-            ServiceException.throwEx("用户名中含有error");
-        }
+        return ajUserService.login(userDto);
 
+        //String result= ajUserService.login(userDto);
+        //return ResultDto.success("login succesfully" + result + "hogwartskeys= " + hogwartskeys,userDto);
 
-        //return "登录成功: " + result + " hogwartskeys=" + hogwartskeys;
-        return ResultDto.success("login succesfully" + result + "hogwartskeys= " + hogwartskeys,userDto);
+//        if(userDto.getUsername().contains("error")){
+//            ServiceException.throwEx("用户名中含有error");
+//        }
+//
+//
+//        return "登录成功: " + result + " hogwartskeys=" + hogwartskeys;
+
     }
 
 
