@@ -118,6 +118,7 @@ public class AJUserController {
         hogwartsTestUser.setUserName(userName);
         log.info("根据用户模糊查询:"+JSONObject.toJSONString(hogwartsTestUser));
         return ajUserService.searchbyNameorId(hogwartsTestUser);
+
     }
 
 
